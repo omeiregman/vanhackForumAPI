@@ -8,7 +8,7 @@ router.use(bodyParser.json());
 var Post = require('./Post');
 
 
-router.post('/', function (req, res) {
+router.post('/', function (req, res, next) {
     Post.create({
             mypost : req.body.mypost,
             name : req.body.name
@@ -19,7 +19,7 @@ router.post('/', function (req, res) {
         });
 });
 
-router.get('/', function (req, res) {
+router.get('/', function (req, res, next) {
     Post.find({}, function (err, posts) {
         if (err) return res.status(500).send("There was a problem loading posts.");
         res.status(200).send(posts);
